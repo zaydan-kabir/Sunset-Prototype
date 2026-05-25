@@ -79,6 +79,21 @@
   @keyframes logoIn  { to { opacity: 1; } }
   @keyframes logoOut { to { opacity: 0; } }
 
+  .skip {
+    margin-top: 28px;
+    font-family: Inter, 'Helvetica Neue', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #6b6557;
+    opacity: 0;
+    animation: skipIn 1.0s ease 2.4s forwards,
+               skipOut 0.8s ease 4.6s forwards;
+  }
+  @keyframes skipIn  { to { opacity: 0.7; } }
+  @keyframes skipOut { to { opacity: 0; } }
+
   .veil {
     position: fixed; inset: 0;
     background: var(--bg);
@@ -99,6 +114,8 @@
     <div class="logo">
       <img src="Sunset-logo.png" alt="Sunset" />
     </div>
+
+    <div class="skip">Click to skip</div>
 
     <span class="rule bottom"></span>
     <span class="tick bl"></span>
