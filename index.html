@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sunset — Hyperframe Animation</title>
+<style>
+  :root {
+    --bg: #1a2330;
+    --accent: #f0e6d2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: radial-gradient(ellipse at center, #243043 0%, #0d141d 100%);
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stage {
+    position: relative;
+    width: min(1140px, 95vw);
+    aspect-ratio: 1140 / 220;
+    perspective: 1200px;
+  }
+
+  .frame {
+    position: absolute;
+    inset: 0;
+    background-image: url('sunset-banner.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  /* hyperframe stack — each frame fires in sequence, then the hero settles in */
+  .frame:nth-child(1) { animation: hyper 2.4s cubic-bezier(.2,.7,.2,1) 0.00s forwards; filter: blur(8px) hue-rotate(-20deg); }
+  .frame:nth-child(2) { animation: hyper 2.4s cubic-bezier(.2,.7,.2,1) 0.12s forwards; filter: blur(6px) hue-rotate(-10deg); }
+  .frame:nth-child(3) { animation: hyper 2.4s cubic-bezier(.2,.7,.2,1) 0.24s forwards; filter: blur(4px); }
+  .frame:nth-child(4) { animation: hyper 2.4s cubic-bezier(.2,.7,.2,1) 0.36s forwards; filter: blur(2px) hue-rotate(8deg); }
+  .frame.hero {
+    animation: settle 1.6s cubic-bezier(.2,.7,.2,1) 0.55s forwards,
+               drift 9s ease-in-out 2.2s infinite;
+    z-index: 10;
+  }
+
+  @keyframes hyper {
+    0%   { opacity: 0; transform: translate3d(-220px, 30px, -400px) rotateY(-22deg) scale(.85); }
+    55%  { opacity: 0.55; }
+    100% { opacity: 0; transform: translate3d(180px, -20px, 200px) rotateY(14deg) scale(1.06); }
+  }
+
+  @keyframes settle {
+    0%   { opacity: 0; transform: translate3d(0, 60px, -300px) scale(.92); filter: blur(14px) brightness(1.4); }
+    60%  { opacity: 1; filter: blur(0) brightness(1.08); }
+    100% { opacity: 1; transform: translate3d(0,0,0) scale(1); filter: blur(0) brightness(1); }
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0,0,0) scale(1); }
+    50%      { transform: translate3d(0, -6px, 0) scale(1.012); }
+  }
+
+  /* sweep of light across the hero once it lands */
+  .stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    background: linear-gradient(110deg,
+      transparent 30%,
+      rgba(255,236,200,0.18) 45%,
+      rgba(255,236,200,0.35) 50%,
+      rgba(255,236,200,0.18) 55%,
+      transparent 70%);
+    transform: translateX(-110%);
+    animation: sweep 4.5s ease-in-out 2.0s infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: 20;
+  }
+
+  @keyframes sweep {
+    0%, 20%  { transform: translateX(-110%); }
+    55%      { transform: translateX(110%); }
+    100%     { transform: translateX(110%); }
+  }
+
+  .caption {
+    position: absolute;
+    bottom: -42px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--accent);
+    letter-spacing: 0.4em;
+    font-size: 12px;
+    opacity: 0;
+    animation: fade 1.2s ease 2.0s forwards;
+  }
+  @keyframes fade { to { opacity: .85; } }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame hero"></div>
+    <div class="caption">RIDE INTO THE SUNSET</div>
+  </div>
+</body>
+</html>
