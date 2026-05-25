@@ -77,25 +77,13 @@
   .logo {
     width: 100%;
     opacity: 0;
-    transform: scale(0.985);
-    animation: logoIn   1.4s cubic-bezier(.2,.7,.2,1) 0.9s forwards,
-               breathe  6s  ease-in-out 2.4s infinite,
-               logoOut  1.0s cubic-bezier(.6,.0,.7,.2) 4.8s forwards;
+    animation: logoIn  1.4s ease 0.9s forwards,
+               logoOut 1.2s ease 4.8s forwards;
   }
   .logo img { width: 100%; height: auto; display: block; }
 
-  @keyframes logoIn  {
-    0%   { opacity: 0; transform: scale(0.985) translateY(6px); filter: blur(6px); }
-    100% { opacity: 1; transform: scale(1)     translateY(0);   filter: blur(0); }
-  }
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.008); }
-  }
-  @keyframes logoOut {
-    0%   { opacity: 1; transform: scale(1); filter: blur(0); }
-    100% { opacity: 0; transform: scale(1.04); filter: blur(4px); }
-  }
+  @keyframes logoIn  { to { opacity: 1; } }
+  @keyframes logoOut { to { opacity: 0; } }
 
   /* final fade — same color as the page so no rectangle is visible */
   .veil {
