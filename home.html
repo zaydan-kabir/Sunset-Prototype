@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sunset — Wind down cleanly. Return more capital.</title>
+<style>
+  :root {
+    --bg: #f5f0e6;
+    --card: #efeae0;
+    --ink: #1a2330;
+    --muted: #6b6557;
+    --btn: #111418;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ——— header ——— */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 40px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Didot', 'Bodoni 72', Georgia, serif;
+    letter-spacing: 0.32em;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .brand .mark {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--ink) url('Sunset-logo.png') no-repeat;
+    background-size: 90px auto;
+    background-position: left center;
+  }
+  nav ul { display: flex; list-style: none; gap: 32px; }
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+  .header-cta { display: flex; align-items: center; gap: 22px; }
+  .header-cta a.login {
+    color: var(--ink);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .btn {
+    background: var(--btn);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* ——— hero ——— */
+  .hero { text-align: center; padding: 90px 24px 60px; }
+  .hero h1 {
+    font-family: 'Didot', 'Bodoni 72', 'Georgia', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .hero p {
+    margin: 28px auto 36px;
+    max-width: 620px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .hero .btn { padding: 16px 30px; font-size: 15px; }
+
+  /* ——— logo wheel ——— */
+  .wheel { padding: 80px 0 100px; }
+  .wheel h2 {
+    text-align: center;
+    font-family: 'Didot', 'Bodoni 72', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 30px);
+    color: #4b4a47;
+    margin-bottom: 42px;
+    padding: 0 24px;
+  }
+  .wheel h2 b { color: var(--ink); font-weight: 500; }
+
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .track {
+    display: flex;
+    gap: 22px;
+    width: max-content;
+    animation: slide 42s linear infinite;
+  }
+  .marquee:hover .track { animation-play-state: paused; }
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .card {
+    flex: 0 0 auto;
+    width: 240px;
+    height: 200px;
+    background: var(--card);
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    gap: 14px;
+  }
+  .card .logo-img {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+  .card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(1) contrast(0.9);
+    opacity: 0.85;
+    transition: filter .3s ease, opacity .3s ease;
+  }
+  .card:hover img { filter: grayscale(0); opacity: 1; }
+  .card .name {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  footer {
+    padding: 40px;
+    text-align: center;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    nav, .header-cta a.login { display: none; }
+    .card { width: 180px; height: 170px; padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="mark"></span>
+    SUNSET
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#">Product</a></li>
+      <li><a href="#">Partners</a></li>
+      <li><a href="#">Company</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+  </nav>
+  <div class="header-cta">
+    <a class="login" href="#">Log in</a>
+    <a class="btn" href="https://sunsethq.com">Get Started</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Wind down cleanly.<br/>Return more capital.</h1>
+  <p>Sunset handles all the legal, tax, and operational work to wind down your startup. Avoid penalties, reduce liabilities, and move on with peace of mind.</p>
+  <a class="btn" href="https://sunsethq.com">Get Started</a>
+</section>
+
+<section class="wheel">
+  <h2>Trusted by founders from <b>industry-leading companies</b></h2>
+
+  <div class="marquee">
+    <div class="track" id="track"></div>
+  </div>
+</section>
+
+<footer>© Sunset · WIND DOWN CLEANLY</footer>
+
+<script>
+  const partners = [
+    { src: 'Sunset%20Logos/RuthHealth.jpeg',            name: 'Ruth Health' },
+    { src: 'Sunset%20Logos/TalkHiring.png',             name: 'Talk Hiring' },
+    { src: 'Sunset%20Logos/experify.webp',              name: 'Experify' },
+    { src: 'Sunset%20Logos/mammoth.webp',               name: 'Mammoth' },
+    { src: 'Sunset%20Logos/motif.webp',                 name: 'Motif' },
+    { src: 'Sunset%20Logos/nocodeops.webp',             name: 'NoCodeOps' },
+    { src: 'Sunset%20Logos/oneplusone.webp',            name: 'One Plus One' },
+    { src: 'Sunset%20Logos/talkback.webp',              name: 'Talkback' },
+    { src: 'Sunset%20Logos/zeta.webp',                  name: 'Zeta' },
+    { src: 'Sunset%20Logos/ziggeo-1669210400-logo.png', name: 'Ziggeo' },
+  ];
+
+  const track = document.getElementById('track');
+  const sequence = [...partners, ...partners];
+  track.innerHTML = sequence.map(p => `
+    <div class="card">
+      <div class="logo-img"><img src="${p.src}" alt="${p.name}" loading="lazy"/></div>
+      <div class="name">${p.name}</div>
+    </div>
+  `).join('');
+</script>
+
+</body>
+</html>
